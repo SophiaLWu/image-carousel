@@ -6,10 +6,13 @@ $(document).ready(function() {
   var currentCircle = $(".circle").first();
   currentCircle.addClass("active-circle");
   currentSlide.show();
-
   $(".next-arrow").on("click", nextSlide);
   $(".prev-arrow").on("click", previousSlide);
   clickCircle();
+  defaultAdvance();
+
+
+  /* Function definitions */
 
   function init() {
     addSlides();
@@ -72,4 +75,11 @@ $(document).ready(function() {
       }
     });
   };
+
+  function defaultAdvance() {
+    setTimeout(function() {
+      nextSlide();
+      defaultAdvance();
+    }, 5000);
+  }
 });
