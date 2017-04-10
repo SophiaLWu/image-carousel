@@ -34,25 +34,33 @@ $(document).ready(function() {
   };
 
   function nextSlide() {
+    currentSlide.hide("slide", { direction: "left" }, 1000);
+    currentCircle.removeClass("active-circle");
     if (currentSlide.next().length != 0) {
-      currentSlide.hide("slide", { direction: "left" }, 1000);
-      currentCircle.removeClass("active-circle");
       currentSlide = currentSlide.next();
       currentCircle = currentCircle.next();
-      currentCircle.addClass("active-circle");
-      currentSlide.show("slide", { direction: "right" }, 1000);
     }
+    else {
+      currentSlide = $(".slide:first-child");
+      currentCircle = $(".circle:first-child");
+    }
+    currentCircle.addClass("active-circle");
+    currentSlide.show("slide", { direction: "right" }, 1000);
   };
 
   function previousSlide() {
+    currentSlide.hide("slide", { direction: "right" }, 1000);
+    currentCircle.removeClass("active-circle");
     if (currentSlide.prev().length != 0) {
-      currentSlide.hide("slide", { direction: "right" }, 1000);
-      currentCircle.removeClass("active-circle");
       currentSlide = currentSlide.prev();
       currentCircle = currentCircle.prev();
-      currentCircle.addClass("active-circle");
-      currentSlide.show("slide", { direction: "left" }, 1000);
     }
+    else { 
+      currentSlide = $(".slide:last-child");
+      currentCircle = $(".circle:last-child");
+    }
+    currentCircle.addClass("active-circle");
+    currentSlide.show("slide", { direction: "left" }, 1000);
   };
 
   function clickCircle() {
