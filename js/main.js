@@ -10,7 +10,12 @@ $(document).ready(function() {
   $(".prev-arrow").on("click", previousSlide);
   clickCircle();
   defaultAdvance();
-
+  $(".prev-arrow").hover(function() {
+    previewShow("prev");
+  }, previewHide)
+  $(".next-arrow").hover(function() {
+    previewShow("next");
+  }, previewHide)
 
   /* Function definitions */
 
@@ -23,7 +28,7 @@ $(document).ready(function() {
   function addSlides() {
     for (var i = 1; i <= numberSlides; i++) {
       $(".slide-container").append("<div class='slide'><img src='images/" + i
-                                    + ".jpg'></div>")
+                                    + ".jpg'><p>" + i + "</p></div>")
     }
   };
 
@@ -84,10 +89,38 @@ $(document).ready(function() {
     });
   };
 
+  function newSlideNumber(type, slideNumber) {
+    if (type === "prev") {
+      return (slideNumber === 1) ? 12 : slideNumber - 1
+    }
+    else {
+      return (slideNumber === 12) ? 1 : slideNumber + 1
+    }
+  };
+
+  function previewShow(type) {
+    var slideNumber = parseInt(currentSlide.find("p").text());
+    var prevSlideNumber = newSlideNumber(type, slideNumber)
+    $("<div class='preview-slide'><img src='images/" + prevSlideNumber 
+       + ".jpg'></div>").appendTo(".preview").hide().fadeIn(500);
+    if (type === "prev") {
+      $(".preview-slide").addClass("prev-preview-slide");
+    } else {
+      $(".preview-slide").addClass("next-preview-slide");
+    }
+  };
+
+  function previewHide() {
+    $(".preview-slide").fadeOut(500, function() {
+        $(this).remove()
+    });
+  };
+
   function defaultAdvance() {
     setTimeout(function() {
       nextSlide();
       defaultAdvance();
     }, 5000);
   }
+
 });

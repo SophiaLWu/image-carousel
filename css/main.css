@@ -14,6 +14,7 @@ body {
   background: -o-linear-gradient(#9ac8e0, #5b8499);
   background: -moz-linear-gradient(#9ac8e0, #5b8499);
   background: linear-gradient(#9ac8e0, #5b8499);
+  font-family: 'Pacifico', cursive;
 }
 
 header {
@@ -22,10 +23,11 @@ header {
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 60px;
 }
 
 .wrapper {
+  min-width: 1300px;
   text-align: center;
 }
 
@@ -107,4 +109,22 @@ img {
 
 .active-circle {
   background: #000;
+}
+
+.prev-preview-slide {
+  position: absolute;
+  top: 338px;
+  left: 15px;
+}
+
+.next-preview-slide {
+  position: absolute;
+  top: 338px;
+  right: 15px;
+}
+
+.preview-slide img {
+  width: 140px;
+  height: auto;
+  border: 2px solid black;
 }
