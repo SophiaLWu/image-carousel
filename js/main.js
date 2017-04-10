@@ -6,18 +6,22 @@ $(document).ready(function() {
   var currentCircle = $(".circle").first();
   currentCircle.addClass("active-circle");
   currentSlide.show();
-  $(".next-arrow").on("click", nextSlide);
-  $(".prev-arrow").on("click", previousSlide);
-  clickCircle();
   defaultAdvance();
-  $(".prev-arrow").hover(function() {
-    previewShow("prev");
-  }, previewHide)
-  $(".next-arrow").hover(function() {
-    previewShow("next");
-  }, previewHide)
+  userInput();
 
   /* Function definitions */
+
+  function userInput() {
+    clickCircle();
+    $(".next-arrow").on("click", nextSlide);
+    $(".prev-arrow").on("click", previousSlide);
+    $(".prev-arrow").hover(function() {
+      previewShow("prev");
+    }, previewHide)
+    $(".next-arrow").hover(function() {
+      previewShow("next");
+    }, previewHide)
+  };
 
   function init() {
     addSlides();
